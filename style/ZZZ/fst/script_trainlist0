@@ -1,0 +1,7 @@
+
+./script_trainB 0 artistic 512 512 A D 1
+./script_trainB 0 ragnaros 512 512 A D 1
+./script_trainB 0 rainprincess 512 512 A D 1
+./script_trainB 0 scream 512 512 A D 1
+./script_trainB 0 udnie 512 512 A D 1
+

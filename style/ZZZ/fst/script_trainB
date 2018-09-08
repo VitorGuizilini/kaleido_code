@@ -1,0 +1,38 @@
+#!/bin/bash
+# $1 - cuda_visible_device
+# $2 - style_dir
+# $3 - style_size
+# $4 - content_size
+# $5 - trainer
+# $6 - network
+# $7 - num_epochs
+
+CUDA_VISIBLE_DEVICES=$1 \
+python3 -W ignore code/run_train.py \
+\
+--style_dir  ../../datasets/styles/$2     \
+--model_dir  models/$2_$3-$4_${0: -1}$5$6 \
+--trainer    trainer$5                    \
+--network    network$6                    \
+\
+--eval_every  50 \
+--batch_size   3 \
+--num_epochs  $7 \
+\
+--image_style   $3 square \
+--image_content $4 square \
+\
+--content_dir  ../../datasets/photos/photosFST \
+--vgg_net      ../../datasets/pretrained/vgg19 \
+\
+--style_layers       'relu1_1' 'relu2_1' 'relu3_1' 'relu4_1' 'relu5_1' \
+--wgt_style_layers      1.0       1.0       1.0       1.0       1.0    \
+--content_layers     'relu4_2' \
+--wgt_content_layer     1.0    \
+\
+--learn_rate  'fixed' 1.0e-3 \
+--wgt_style    5.0e+2 \
+--wgt_content  7.5e+0 \
+--wgt_totvar   2.0e+2 \
+\
+
